@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">PersonalApp</string>
+    <string name="nombre_completo">Nombre Completo</string>
+    <string name="distrito">Distrito</string>
+    <string name="estado_civil">Estado Civil</string>
+    <string name="soltero">Soltero</string>
+    <string name="casado">Casado</string>
+    <string name="divorciado">Divorciado</string>
+    <string name="viudo">Viudo</string>
+    <string name="imprimir">IMPRIMIR</string>
+</resources>
