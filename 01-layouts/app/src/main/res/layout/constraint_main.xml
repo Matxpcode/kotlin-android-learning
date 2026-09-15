@@ -18,17 +18,71 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <TextView
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imgViewAndroid"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"/>
+
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        app:layout_constraintTop_toTopOf="@id/imgViewAndroid"
+
+        app:layout_constraintStart_toEndOf="@+id/imgViewAndroid"
+        app:layout_constraintEnd_toEndOf="parent"
+
         android:text="margins margins margins margins margins margins"
         android:textColor="@android:color/white"
-        android:background="@android:color/holo_red_dark"/>
+        android:background="@android:color/holo_red_dark"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"/>
 
-    <!--aqui me qdo-->
     <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:id="@+id/vista"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/holo_blue_bright"
+        app:layout_constraintStart_toStartOf="@id/textViewTitle"
+        app:layout_constraintEnd_toEndOf="@id/textViewTitle"
+
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        app:layout_constraintBottom_toBottomOf="@id/imgViewAndroid"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btn_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Boton1"
+        app:layout_constraintStart_toStartOf="@id/vista"
+        app:layout_constraintEnd_toEndOf="@id/vista"
+        app:layout_constraintTop_toBottomOf="@id/imgViewAndroid"/>
+
+    <Button
+        android:id="@+id/btn_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Boton2"
+        app:layout_constraintStart_toStartOf="@id/btn_1"
+        app:layout_constraintEnd_toEndOf="@id/btn_1"
+        app:layout_constraintTop_toBottomOf="@id/btn_1"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Boton3"
+        app:layout_constraintStart_toStartOf="@id/btn_1"
+        app:layout_constraintEnd_toEndOf="@id/btn_1"
+        app:layout_constraintTop_toBottomOf="@id/btn_2"/>
+
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginRight="16dp"-->
     
 </androidx.constraintlayout.widget.ConstraintLayout>
