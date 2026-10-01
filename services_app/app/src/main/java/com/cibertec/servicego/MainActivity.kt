@@ -200,4 +200,86 @@ class MainActivity : AppCompatActivity() {
         val recargoPrioridad = if(modalidad==getString(R.string.modalidad_prioritaria))0.5 else 0.0
         return tiempoBase+recargoPrioridad
     }
+
+    //METODOS AÑADIDOS POSTERIORMENTE
+    private fun registrarServicio(){
+        val cliente = binding.editTextCliente.text.toString().trim()
+        val descripcion = binding.editTextDescripcion.text.toString().trim()
+        val direccion = binding.editTextDireccion.text.toString().trim()
+
+        if (!validarFormulario(cliente,descripcion,direccion)){
+            binding.textViewMensajeVisible.text=getString(R.string.mensaje_validacion_basica)
+            return
+        }
+
+        val codigoRegistrado = generarCodigoCorrelativo()
+        val tipoServicio = obtenerTipoServicio(descripcion)
+        val modalidad =obtenerModalidad(descripcion)
+        val costoEstimado = calcularCostoEstimado(tipoServicio,modalidad)
+        val tiempoEstimado =calcularTiempoEstimado(tipoServicio,modalidad)
+
+        binding.textViewTituloPrincipal.text=getString(R.string.resumen_actualizado_titulo)
+        binding.textViewResumenCliente.text =getString(R.string.resumen_cliente_formato,cliente)
+        binding.textViewResumenDescripcion.text=getString(R.string.resumen_descripcion_formato,descripcion)
+        binding.textViewResumenDireccion.text=getString(R.string.resumen_direccion_formato,direccion)
+        binding.textViewCodigoPreliminar.text=getString(R.string.codigo_preliminar_formato,codigoRegistrado)
+        binding.textViewCostoEstimado.text = getString(R.string.costo_estimado_formato,"S/ ${"%.2f".format(costoEstimado)}")
+        binding.textViewIndicadoresTecnicos.text=getString(
+            R.string.indicadores_operativos_formato,
+"%.1f".format(tiempoEstimado),
+            tipoServicio,
+            modalidad
+        )
+        binding.textViewEstadoRegistro.text=getString(R.string.estado_registrado)
+        binding.textViewMensajeVisible.text=getString(
+            R.string.mensaje_registro_exitoso,
+            "$codigoRegistrado - $cliente"
+        )
+
+        nextCode+=1
+        limpiarFormulario()
+    }
+
+    private fun validarFormulario(cliente: String,descripcion: String,direccion:String): Boolean{
+        var esValido = true
+
+        binding.editTextCliente.error=null
+        binding.editTextDescripcion.error=null
+        binding.editTextDireccion.error=null
+
+        if (cliente.isBlank()){
+            binding.editTextCliente.error=getString(R.string.error_cliente_requerido)
+            esValido = false
+        }
+        if (descripcion.isBlank()){
+            binding.editTextDescripcion.error=getString(R.string.error_descripcion_requerida)
+            esValido=false
+        }else if(descripcion.length<8){
+            binding.editTextDescripcion.error=getString(R.string.error_descripcion_corta)
+        }
+        if (direccion.isBlank()){
+            binding.editTextDireccion.error=getString(R.string.error_direccion_requerida)
+            esValido=false
+        }
+
+        return esValido
+    }
+
+    private fun limpiarFormulario(){
+        binding.editTextCliente.text?.clear()
+        binding.editTextDescripcion.text?.clear()
+        binding.editTextDireccion.text?.clear()
+        binding.editTextCliente.error=null
+        binding.editTextDescripcion.error=null
+        binding.editTextDireccion.error=null
+        binding.textViewCodigoPreliminar.text=getString(
+            R.string.codigo_preliminar_formato,
+            generarCodigoCorrelativo()
+        )
+        binding.textViewCostoEstimado.text=getString(
+            R.string.costo_estimado_formato,
+            "Pendiente"
+        )
+        binding.textViewIndicadoresTecnicos.text=getString(R.string.indicadores_iniciales)
+    }
 }
