@@ -5,16 +5,42 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.recyclerapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+   //PASO 1: declaramos el binding
+    private lateinit var binding: ActivityMainBinding
+
+    //metodo principal de inicializacion para preparar recursos, inflar vistas, y manejo de logica inicial
+    //su parametro guarda informacion del estado anterior: savedInstanceState
     override fun onCreate(savedInstanceState: Bundle?) {
+        //primer comando antes de cualquier otro
+        //da aviso al S.O para la construccion de la actividad(gestiona sus recursos)
+        //y maneja los estados (ejem. en q forma estuvo anteriormente vertical/horiz, evitar perdida de estos datos)
         super.onCreate(savedInstanceState)
+
+        //llamamos metodo de configuracion
+        setupBindingAndWindow()
+
+
+    }
+
+    //metodo de configuracion de binding y ventana
+    private fun setupBindingAndWindow(){
+        //PASO 2: cargamos el binding
+        //proceso de transformacion de texto xml a una estructura de objetos controlables en memoria
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)    //renderiza esa estructura de objetos en la pantalla del usuario
+
+        //comando de configuracion de diseño por default para pantallas modernas
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
     }
+
+
 }
