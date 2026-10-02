@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerapp.databinding.ItemContactoBinding
 import com.example.recyclerapp.entidad.Contacto
 
-class ContactoAdapter(val lista: List<Contacto>): RecyclerView.Adapter<ContactoVH>(){
+class ContactoAdapter(val lista: List<Contacto>, val click: (Contacto)-> Unit): RecyclerView.Adapter<ContactoVH>(){
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -27,6 +27,7 @@ class ContactoAdapter(val lista: List<Contacto>): RecyclerView.Adapter<ContactoV
         //añadimos evento click en el contacto
         holder.itemView.setOnClickListener {
             Log.i("ADA", "CLICK EN: ${unContacto.nombre}")
+            click(unContacto)
         }
     }
 

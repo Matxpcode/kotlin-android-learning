@@ -1,6 +1,7 @@
 package com.example.recyclerapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -34,7 +35,10 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)    //renderiza esa estructura de objetos en la pantalla del usuario
 
-        binding.rvContacto.adapter = ContactoAdapter(listaContactos())
+        binding.rvContacto.adapter = ContactoAdapter(listaContactos()){
+            contacto ->
+            Log.i("ACT", "CLICK EN CONTACTO: ${contacto.nombre}")
+        }
 
 
         //comando de configuracion de diseño por default para pantallas modernas
