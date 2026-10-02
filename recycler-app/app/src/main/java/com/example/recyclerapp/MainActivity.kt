@@ -5,7 +5,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.recyclerapp.adaptador.ContactoAdapter
 import com.example.recyclerapp.databinding.ActivityMainBinding
+import com.example.recyclerapp.entidad.Contacto
 
 class MainActivity : AppCompatActivity() {
    //PASO 1: declaramos el binding
@@ -32,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)    //renderiza esa estructura de objetos en la pantalla del usuario
 
+        binding.rvContacto.adapter = ContactoAdapter(listaContactos())
+
+
         //comando de configuracion de diseño por default para pantallas modernas
         enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -42,5 +47,23 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun listaContactos(): List<Contacto>{
+        return listOf(
+            Contacto("Luis Ventura","plventur@cibertec.edu.pe"),
+            Contacto("Rick Sanchez","ricksanchez@cibertec.edu.pe"),
+            Contacto("Morty Smith","mortysmith@cibertec.edu.pe"),
+            Contacto("Summer Smith","summersmith@cibertec.edu.pe"),
+            Contacto("Pepito Estrada","pepitoestrada@cibertec.edu.pe"),
+            Contacto("Rick Sanchez","ricksanchez@cibertec.edu.pe"),
+            Contacto("Morty Smith","mortysmith@cibertec.edu.pe"),
+            Contacto("Summer Smith","summersmith@cibertec.edu.pe"),
+            Contacto("Pepito Estrada","pepitoestrada@cibertec.edu.pe"),
+            Contacto("Luis Ventura","plventur@cibertec.edu.pe"),
+            Contacto("Luis Ventura","plventur@cibertec.edu.pe"),
+            Contacto("Luis Ventura","plventur@cibertec.edu.pe"),
+            Contacto("Luis Ventura","plventur@cibertec.edu.pe"),
+            Contacto("Luis Ventura","plventur@cibertec.edu.pe")
+        )
+    }
 
 }
