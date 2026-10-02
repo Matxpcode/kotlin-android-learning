@@ -1,5 +1,6 @@
 package com.example.recyclerapp.adaptador
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,11 @@ class ContactoAdapter(val lista: List<Contacto>): RecyclerView.Adapter<ContactoV
     ) {
         val unContacto = lista[position]
         holder.completarInformacion(unContacto)
+
+        //añadimos evento click en el contacto
+        holder.itemView.setOnClickListener {
+            Log.i("ADA", "CLICK EN: ${unContacto.nombre}")
+        }
     }
 
     override fun getItemCount(): Int {
